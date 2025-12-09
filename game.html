@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🧠 Suerte Digital (Cartas + Cubo) V8.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light"> 
+    
+    <div id="game-container">
+        <h1>🧠 Suerte Digital (Cartas + Cubo)</h1>
+
+        <div class="player-info" style="margin-bottom: 10px;">
+            Dificultad de la partida: <span id="current-difficulty" style="color: #f39c12; font-weight: bold;">Cargando...</span>
+        </div>
+        
+        <div class="control-buttons flex-row">
+            <button class="btn-info" onclick="registerPlayers()">👥 Registrar Jugadores</button>
+            <button class="btn-primary" onclick="openOptions()">⚙️ Opciones de Juego</button>
+        </div>
+
+        <div class="player-info">
+            Turno: <span id="current-player-name">Individual (Sin registro)</span>
+        </div>
+
+        <div class="module-selector">
+            <label for="module-select" style="font-weight: bold;">1. Elige un Módulo:</label>
+            <select id="module-select" onchange="selectModule()" class="full-width select-large">
+                <option value="Word">Word</option>
+                <option value="Excel">Excel</option>
+                <option value="PowerPoint">PowerPoint</option>
+                <option value="Windows">Windows</option>
+                <option value="Internet">Internet y Seguridad</option>
+                <option value="All">Todos (Aleatorio)</option>
+            </select>
+        </div>
+
+        <div class="control-buttons flex-row">
+            <button class="btn-primary" id="btn-card" onclick="selectCard()">🃏 Sacar Carta (Tema)</button>
+            <button class="btn-primary" id="btn-cube" onclick="rollCube()" disabled>🎲 Lanzar Cubo (Tarea)</button>
+        </div>
+
+        <hr>
+
+        <div id="card-display">
+            <div id="card-name">Esperando Carta...</div> 
+            <div id="task-title"></div>
+            <div id="task-body"></div>
+            <div id="help-text"></div>
+            <div id="error-tip"></div>
+        </div>
+
+        <div class="score-feedback-area flex-row">
+            
+            <div class="score-box">
+                <div id="score-display">Puntuación: 0</div>
+                <div class="flex-row">
+                    <button class="btn-danger" id="btn-minus" onclick="scoreAction(-gameOptions.subtractValue)" disabled>Incorrecto (-1)</button>
+                    <button class="btn-success" id="btn-plus" onclick="scoreAction(gameOptions.pointValue)" disabled>Correcto (+1)</button>
+                </div>
+                <div class="feedback-controls">
+                    <label>Nivel de Reto:</label>
+                    <div class="flex-row">
+                        <button class="btn-warning" id="btn-hard" onclick="logFeedback('Difícil')" disabled>Refuerzo (Ayuda)</button>
+                        <button class="btn-info" id="btn-easy" onclick="logFeedback('Maestría')" disabled>Maestría (Fácil)</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="log-box">
+                <h4>📊 Log de Refuerzo</h4>
+                <div id="feedback-list">
+                    <p>Temas aparecerán aquí...</p>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn-danger full-width" onclick="resetGame()">🚨 REINICIAR JUEGO (Borrar todo)</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

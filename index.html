@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bienvenido a Suerte Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para la landing page */
+        body { background: #2c3e50; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .menu-container { background: #34495e; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 0 25px rgba(0, 0, 0, 0.5); }
+        .logo { font-size: 3.5em; margin-bottom: 20px; color: #f1c40f; animation: pulse 1.5s infinite alternate; }
+        h2 { margin-bottom: 30px; }
+        .difficulty-options button { width: 150px; padding: 15px; margin: 10px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s; }
+        .easy-btn { background: #27ae60; color: white; }
+        .medium-btn { background: #f39c12; color: white; }
+        .hard-btn { background: #e74c3c; color: white; }
+        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.05); } }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <div class="logo">🧠 Suerte Digital 🎲</div>
+        <h2>¡El juego de cartas que pone a prueba tus conocimientos de informática!</h2>
+        <p style="margin-bottom: 30px;">Selecciona la dificultad para comenzar la partida:</p>
+        
+        <div class="difficulty-options">
+            <button class="easy-btn" onclick="startGame('Fácil')">Fácil (Básico)</button>
+            <button class="medium-btn" onclick="startGame('Medio')">Medio (Intermedio)</button>
+            <button class="hard-btn" onclick="startGame('Difícil')">Difícil (Experto)</button>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.9em; color: #bdc3c7;">Hecho con ilusión por el profe, Johan.</p>
+    </div>
+
+    <script>
+        function startGame(difficulty) {
+            // Guarda la dificultad en el almacenamiento local para que la recoja la página del juego
+            localStorage.setItem('gameDifficulty', difficulty);
+            // Redirige al juego
+            window.location.href = 'game.html';
+        }
+    </script>
+</body>
+</html>

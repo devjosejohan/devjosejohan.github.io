@@ -1,0 +1,203 @@
+/* --- Estilos Generales BASE (Modo Claro) --- */
+:root {
+    --bg-color: #f7f7f7;
+    --container-bg: white;
+    --text-color: #333;
+    --primary-color: #007bff;
+    --secondary-color: #1e8449;
+    --card-bg: #e9ecef;
+    --log-bg: #fff3e0;
+    --log-border: #ffcc80;
+    --player-bg: #f0f8ff;
+    --player-color: #006400;
+}
+
+/* --- Modo Oscuro --- */
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --container-bg: #2b2b2b;
+    --text-color: #e0e0e0;
+    --primary-color: #4da6ff; /* Azul más brillante */
+    --secondary-color: #79d279; /* Verde más claro */
+    --card-bg: #3c3c3c;
+    --log-bg: #4a4035;
+    --log-border: #8d7966;
+    --player-bg: #353545;
+    --player-color: #90ee90;
+}
+
+body { 
+    font-family: 'Arial', sans-serif; 
+    background: var(--bg-color); 
+    color: var(--text-color);
+    margin: 0; 
+    padding: 25px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    transition: background-color 0.3s, color 0.3s;
+}
+#game-container { 
+    background: var(--container-bg); 
+    padding: 30px; 
+    border-radius: 15px; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3); 
+    width: 95%; 
+    max-width: 650px; 
+}
+h1 { 
+    color: var(--primary-color); 
+    text-align: center; 
+    margin-bottom: 30px; 
+}
+hr {
+    border: 0; 
+    height: 1px; 
+    background: #ccc; 
+    margin: 20px 0; 
+}
+
+/* --- Utilidades y Espaciado --- */
+.flex-row { 
+    display: flex; 
+    gap: 15px; 
+    width: 100%;
+    margin-bottom: 15px; 
+}
+.full-width {
+    width: 100%;
+}
+.module-selector, .player-info {
+    margin-bottom: 20px; 
+}
+
+/* Selector de Módulo Grande (Mejora visual) */
+.select-large {
+    padding: 12px 8px !important; 
+    font-size: 1.1em !important;
+    border-radius: 6px !important;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+
+.player-info { 
+    background: var(--player-bg); 
+    border: 1px solid var(--log-border); 
+    font-size: 1.1em; 
+    font-weight: bold; 
+    color: var(--player-color); 
+    text-align: center; 
+    padding: 12px; 
+    border-radius: 8px;
+}
+#current-player-name { 
+    color: #FF6347; /* Naranja/rojo para contraste en ambos modos */
+} 
+
+/* Botones */
+button { 
+    padding: 12px 18px; 
+    margin: 5px 2px; 
+    border: none; 
+    border-radius: 6px; 
+    font-size: 15px; 
+    cursor: pointer; 
+    transition: 0.2s; 
+    flex-grow: 1; 
+}
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-primary { background: var(--primary-color); color: white; }
+.btn-info { background: #17a2b8; color: white; }
+.btn-success { background: #28a745; color: white; }
+.btn-danger { background: #dc3545; color: white; }
+.btn-warning { background: #ffc107; color: black; }
+
+
+/* Display de Carta y Tarea */
+#card-display { 
+    padding: 25px; 
+    border-radius: 10px; 
+    background: var(--card-bg); 
+    text-align: center; 
+    margin-bottom: 25px;
+}
+#card-name { 
+    font-size: 2.2em; 
+    color: var(--primary-color); 
+    font-weight: bold; 
+}
+#task-title { 
+    font-size: 1.3em; 
+    color: var(--secondary-color); 
+    font-weight: bold; 
+    margin-top: 20px; 
+}
+#task-body { 
+    font-size: 1.2em; 
+    color: var(--text-color); 
+    margin-top: 10px; 
+}
+#help-text { 
+    font-size: 1.1em; 
+    color: var(--primary-color); 
+    margin-top: 15px; 
+    border-left: 3px solid var(--primary-color); 
+    padding-left: 10px; 
+    text-align: left;
+}
+#error-tip { 
+    font-size: 1em; 
+    color: #dc3545; 
+    margin-top: 10px; 
+    text-align: left;
+}
+
+/* --- Log de Dificultad y Puntuación --- */
+.score-feedback-area {
+    margin-top: 20px;
+    align-items: flex-start; 
+}
+
+.score-box {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid var(--log-border);
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.log-box {
+    flex: 1;
+    padding: 15px;
+    background: var(--log-bg); 
+    border: 1px solid var(--log-border);
+    border-radius: 8px;
+    min-height: 150px; 
+}
+.log-box h4 {
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Estilos de las entradas del log */
+#feedback-list p {
+    margin: 5px 0;
+    padding: 3px;
+    border-bottom: 1px dashed var(--log-border);
+}
+.difficult-item {
+    font-weight: bold;
+    color: #c0392b; 
+}
+
+.feedback-controls {
+    margin-top: 15px;
+    display: block; 
+}
+.feedback-controls label {
+    display: block;
+    margin-bottom: 8px;
+}
