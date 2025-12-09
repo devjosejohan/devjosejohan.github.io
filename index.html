@@ -1,45 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bienvenido a Suerte Digital</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sopa Cósmica: ¡Desafío Galáctico!</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Estilos específicos para la landing page */
-        body { background: #2c3e50; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .menu-container { background: #34495e; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 0 25px rgba(0, 0, 0, 0.5); }
-        .logo { font-size: 3.5em; margin-bottom: 20px; color: #f1c40f; animation: pulse 1.5s infinite alternate; }
-        h2 { margin-bottom: 30px; }
-        .difficulty-options button { width: 150px; padding: 15px; margin: 10px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s; }
-        .easy-btn { background: #27ae60; color: white; }
-        .medium-btn { background: #f39c12; color: white; }
-        .hard-btn { background: #e74c3c; color: white; }
-        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.05); } }
-    </style>
 </head>
 <body>
 
-    <div class="menu-container">
-        <div class="logo">🧠 Suerte Digital 🎲</div>
-        <h2>¡El juego de cartas que pone a prueba tus conocimientos de informática!</h2>
-        <p style="margin-bottom: 30px;">Selecciona la dificultad para comenzar la partida:</p>
+    <div id="game-container">
+        <h1>🧠 Sopa Cósmica: ¡Desafío Galáctico! 🌌</h1>
         
-        <div class="difficulty-options">
-            <button class="easy-btn" onclick="startGame('Fácil')">Fácil (Básico)</button>
-            <button class="medium-btn" onclick="startGame('Medio')">Medio (Intermedio)</button>
-            <button class="hard-btn" onclick="startGame('Difícil')">Difícil (Experto)</button>
+        <div id="menu-area">
+            <h3>Selecciona la Misión (Módulo) para comenzar:</h3>
+            
+            <div class="module-selector" style="max-width: 450px; margin: 20px auto;">
+                <label for="module-select">Módulo:</label>
+                <select id="module-select" class="select-large">
+                    <option value="Windows">Windows</option>
+                    <option value="Word">Word</option>
+                    <option value="Excel">Excel</option>
+                    <option value="PowerPoint">PowerPoint</option>
+                    <option value="Internet">Internet</option>
+                    <option value="TODOS">TODOS (ALEATORIO DINÁMICO)</option>
+                </select>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 15px; margin: 30px auto; max-width: 450px;">
+                <button id="start-btn" onclick="startGame(false)">▶️ Búsqueda Normal</button>
+                <button id="time-trial-btn" onclick="startGame(true)">⏱️ Contrarreloj (3 Minutos)</button>
+                <button id="settings-btn" onclick="openSettings()">⚙️ Ajustes del Juego</button> </div>
+            
+            <p id="game-message" style="margin-top: 20px;">Módulo Windows cargado.</p>
         </div>
-        <p style="margin-top: 20px; font-size: 0.9em; color: #bdc3c7;">Hecho con ilusión por el profe, Johan.</p>
+        <div id="gameplay-area" class="hidden">
+            <div class="controls-area">
+                <div style="display: flex; align-items: center;">
+                    <div id="timer-display" class="hidden">03:00</div>
+                    <div id="status-display">
+                        Palabras Encontradas: <span id="found-count">0</span> / <span id="total-count">0</span>
+                    </div>
+                </div>
+                <button id="go-to-menu-btn" onclick="goToMenu()">🏠 Menú Principal</button> 
+            </div>
+
+            <div class="game-grid-area">
+                <div id="word-search-grid"></div>
+                
+                <div id="word-list-container">
+                    <h3>Palabras a Buscar:</h3>
+                    <ul id="word-list"></ul>
+                </div>
+            </div>
+            
+            <div id="comprehension-test" class="hidden">
+                <h3>¡Palabra Encontrada!</h3>
+                <p id="test-question"></p>
+                <div id="test-options"></div>
+            </div>
+        </div>
+        <div id="win-message" class="hidden">
+            <h2>¡FELICIDADES! ¡MISIÓN CUMPLIDA!</h2>
+            <p>Has demostrado tu maestría en el módulo de <span id="completed-module-name"></span>.</p>
+            <button id="next-level-btn" onclick="nextLevel()">▶️ Jugar de Nuevo</button>
+            <button class="btn-primary" onclick="goToMenu()">🏠 Ir al Menú</button>
+        </div>
+        
+        <div id="reward-message" class="hidden"></div>
+        
     </div>
 
-    <script>
-        function startGame(difficulty) {
-            // Guarda la dificultad en el almacenamiento local para que la recoja la página del juego
-            localStorage.setItem('gameDifficulty', difficulty);
-            // Redirige al juego
-            window.location.href = 'game.html';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,203 +1,290 @@
-/* --- Estilos Generales BASE (Modo Claro) --- */
+/* --- Estilos Globales --- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+/* Variables CSS para el color dinámico del módulo */
 :root {
-    --bg-color: #f7f7f7;
-    --container-bg: white;
+    --module-main-color: #17a2b8; /* Default Windows color */
+    --module-shadow-color: rgba(23, 162, 184, 0.5);
     --text-color: #333;
-    --primary-color: #007bff;
-    --secondary-color: #1e8449;
-    --card-bg: #e9ecef;
-    --log-bg: #fff3e0;
-    --log-border: #ffcc80;
-    --player-bg: #f0f8ff;
-    --player-color: #006400;
 }
 
-/* --- Modo Oscuro --- */
-[data-theme="dark"] {
-    --bg-color: #1a1a1a;
-    --container-bg: #2b2b2b;
-    --text-color: #e0e0e0;
-    --primary-color: #4da6ff; /* Azul más brillante */
-    --secondary-color: #79d279; /* Verde más claro */
-    --card-bg: #3c3c3c;
-    --log-bg: #4a4035;
-    --log-border: #8d7966;
-    --player-bg: #353545;
-    --player-color: #90ee90;
-}
-
-body { 
-    font-family: 'Arial', sans-serif; 
-    background: var(--bg-color); 
-    color: var(--text-color);
-    margin: 0; 
-    padding: 25px; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    transition: background-color 0.3s, color 0.3s;
-}
-#game-container { 
-    background: var(--container-bg); 
-    padding: 30px; 
-    border-radius: 15px; 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3); 
-    width: 95%; 
-    max-width: 650px; 
-}
-h1 { 
-    color: var(--primary-color); 
-    text-align: center; 
-    margin-bottom: 30px; 
-}
-hr {
-    border: 0; 
-    height: 1px; 
-    background: #ccc; 
-    margin: 20px 0; 
-}
-
-/* --- Utilidades y Espaciado --- */
-.flex-row { 
-    display: flex; 
-    gap: 15px; 
-    width: 100%;
-    margin-bottom: 15px; 
-}
-.full-width {
+#game-container {
+    background: white;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    max-width: 950px;
     width: 100%;
 }
-.module-selector, .player-info {
-    margin-bottom: 20px; 
+
+h1 {
+    color: #4b0082; /* Púrpura (Sopa Cósmica) */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2em;
 }
 
-/* Selector de Módulo Grande (Mejora visual) */
-.select-large {
-    padding: 12px 8px !important; 
-    font-size: 1.1em !important;
-    border-radius: 6px !important;
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    border: 1px solid var(--text-color);
+/* --- Controles y Menú --- */
+.controls-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f0e6ff;
 }
 
-.player-info { 
-    background: var(--player-bg); 
-    border: 1px solid var(--log-border); 
-    font-size: 1.1em; 
-    font-weight: bold; 
-    color: var(--player-color); 
-    text-align: center; 
-    padding: 12px; 
-    border-radius: 8px;
-}
-#current-player-name { 
-    color: #FF6347; /* Naranja/rojo para contraste en ambos modos */
-} 
+.module-selector { display: flex; align-items: center; gap: 15px; }
+.module-selector select { padding: 10px 15px; border-radius: 6px; font-size: 1.05em; }
 
-/* Botones */
-button { 
-    padding: 12px 18px; 
-    margin: 5px 2px; 
-    border: none; 
-    border-radius: 6px; 
-    font-size: 15px; 
-    cursor: pointer; 
-    transition: 0.2s; 
-    flex-grow: 1; 
+#start-btn, #go-to-menu-btn, #next-level-btn, #time-trial-btn {
+    background-color: #4b0082; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 10px 20px;
 }
-button:disabled { opacity: 0.4; cursor: not-allowed; }
+#time-trial-btn { background-color: #ffc107; color: #333; }
+#start-btn:hover:not(:disabled), #time-trial-btn:hover:not(:disabled) {
+    background-color: #6a0dad;
+}
+#go-to-menu-btn { background-color: #007bff; }
+#next-level-btn { background-color: #28a745; }
 
-.btn-primary { background: var(--primary-color); color: white; }
-.btn-info { background: #17a2b8; color: white; }
-.btn-success { background: #28a745; color: white; }
-.btn-danger { background: #dc3545; color: white; }
-.btn-warning { background: #ffc107; color: black; }
-
-
-/* Display de Carta y Tarea */
-#card-display { 
-    padding: 25px; 
-    border-radius: 10px; 
-    background: var(--card-bg); 
-    text-align: center; 
-    margin-bottom: 25px;
-}
-#card-name { 
-    font-size: 2.2em; 
-    color: var(--primary-color); 
-    font-weight: bold; 
-}
-#task-title { 
-    font-size: 1.3em; 
-    color: var(--secondary-color); 
-    font-weight: bold; 
-    margin-top: 20px; 
-}
-#task-body { 
-    font-size: 1.2em; 
-    color: var(--text-color); 
-    margin-top: 10px; 
-}
-#help-text { 
-    font-size: 1.1em; 
-    color: var(--primary-color); 
-    margin-top: 15px; 
-    border-left: 3px solid var(--primary-color); 
-    padding-left: 10px; 
-    text-align: left;
-}
-#error-tip { 
-    font-size: 1em; 
-    color: #dc3545; 
-    margin-top: 10px; 
-    text-align: left;
-}
-
-/* --- Log de Dificultad y Puntuación --- */
-.score-feedback-area {
-    margin-top: 20px;
-    align-items: flex-start; 
-}
-
-.score-box {
-    flex: 1;
-    padding: 15px;
-    border: 1px solid var(--log-border);
-    border-radius: 8px;
-    margin-right: 15px;
-}
-
-.log-box {
-    flex: 1;
-    padding: 15px;
-    background: var(--log-bg); 
-    border: 1px solid var(--log-border);
-    border-radius: 8px;
-    min-height: 150px; 
-}
-.log-box h4 {
-    color: var(--text-color);
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-/* Estilos de las entradas del log */
-#feedback-list p {
-    margin: 5px 0;
-    padding: 3px;
-    border-bottom: 1px dashed var(--log-border);
-}
-.difficult-item {
+/* Display de Tiempo (NUEVO) */
+#timer-display {
+    font-size: 1.5em;
     font-weight: bold;
-    color: #c0392b; 
+    color: #dc3545;
+    margin-right: 20px;
 }
 
-.feedback-controls {
-    margin-top: 15px;
-    display: block; 
+/* Área Principal del Juego (Grid y Lista) */
+.game-grid-area {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 25px;
+    align-items: flex-start;
 }
-.feedback-controls label {
-    display: block;
-    margin-bottom: 8px;
+
+/* Cuadrícula de Letras */
+#word-search-grid {
+    display: grid;
+    border: 3px solid #ccc; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.grid-cell {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: crosshair;
+    user-select: none;
+    transition: background-color 0.1s, transform 0.1s, opacity 0.3s;
+}
+
+.grid-cell:hover {
+    transform: scale(1.05);
+    background-color: #f8f9fa;
+}
+
+/* Estilos de interacciones DINÁMICAS */
+.highlight {
+    background-color: var(--module-shadow-color); /* Resaltado con sombra del módulo */
+    box-shadow: 0 0 5px var(--module-shadow-color); 
+}
+
+.found {
+    background-color: #20c997 !important;
+    color: white !important;
+    font-weight: bold;
+    cursor: default;
+}
+
+/* NUEVA CLASE: Castigo visual por respuesta incorrecta */
+.failed {
+    background-color: #ffcccc !important; /* Rojo pálido de castigo */
+    color: #a00000;
+    opacity: 0.6; /* Se vuelve opaco */
+    pointer-events: none; /* Bloquea la selección de estas celdas (castigo) */
+}
+
+/* Lista de Palabras */
+#word-list-container {
+    flex-shrink: 0;
+    width: 300px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 2px solid var(--module-main-color); /* Borde dinámico */
+}
+
+#word-list-container h3 {
+    margin-top: 0;
+    color: var(--module-main-color);
+}
+
+#word-list li {
+    font-size: 1.1em;
+    padding: 6px 0;
+    transition: opacity 0.5s;
+    color: #555;
+    font-weight: 500;
+}
+
+.found-word {
+    text-decoration: line-through;
+    opacity: 0.5;
+    color: var(--module-main-color) !important; /* Color del módulo para el tachado */
+}
+
+/* Área de Prueba de Comprensión (Feedback Visual Mejorado) */
+#comprehension-test {
+    margin-top: 30px;
+    padding: 25px;
+    border: 3px solid #007bff;
+    border-radius: 10px;
+    background-color: #e6f0ff;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#test-options button {
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #007bff;
+    color: white;
+}
+#test-options button.correct {
+    background-color: #28a745 !important;
+    color: white;
+    font-weight: bold;
+}
+#test-options button.incorrect-selected {
+    background-color: #dc3545 !important;
+    text-decoration: line-through;
+    color: white;
+    font-weight: bold;
+}
+
+/* MENSAJE DE VICTORIA */
+#win-message {
+    background: rgba(44, 62, 80, 0.95);
+    color: white;
+    font-size: 2.5em;
+    z-index: 10;
+    border-radius: 18px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+#win-message h2 { color: #f1c40f; }
+
+.hidden {
+    display: none !important;
+}
+
+/* --- AÑADE ESTO AL CSS PARA CENTRAR EL MENÚ --- */
+
+/* Asegurar que el contenido dentro del contenedor de juego esté centrado */
+#menu-area {
+    width: 100%;
+    text-align: center; 
+    padding: 30px 0;
+}
+
+/* Centrar el bloque de botones de inicio */
+#menu-area > div:nth-child(3) { /* Selecciona el div que contiene los botones de inicio */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px auto; 
+    max-width: 450px; 
+}
+
+/* (Mantén el contenido de la V5.1 y añade estas secciones) */
+
+/* --- Estilos Globales (Ajustes de Tamaño) --- */
+#game-container {
+    /* ... (resto del padding y box-shadow) ... */
+    max-width: 980px; /* Aumentamos ligeramente para mejor espacio */
+}
+
+/* Título */
+h1 {
+    font-size: 2.4em; /* Ligeramente más grande */
+}
+
+/* Área de Controles */
+.controls-area {
+    /* ... (Estilos de fondo y padding) ... */
+    padding: 15px 25px; 
+}
+
+/* Display de Estatus y Tiempo */
+#timer-display {
+    font-size: 1.8em; /* Hacemos el tiempo más legible */
+    font-weight: 900;
+    margin-right: 25px;
+    /* ... (color) ... */
+}
+#status-display {
+    font-size: 1.4em; /* El contador de palabras se ve mejor */
+}
+
+/* Cuadrícula */
+.grid-cell {
+    width: 40px; /* Celdas un poco más grandes para mejor tacto */
+    height: 40px;
+    font-size: 1.4em; 
+}
+
+/* --- NUEVOS ESTILOS PARA RECOMPENSAS --- */
+#reward-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #00bcd4; /* Cian vibrante */
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #00bcd4;
+    font-size: 1.5em;
+    z-index: 20;
+    animation: fade-in-out 3s forwards;
+    text-align: center;
+}
+@keyframes fade-in-out {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    10% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    90% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); display: none; }
+}
+
+/* Botón de Ajustes (Estilo primario) */
+#settings-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
 }
